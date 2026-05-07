@@ -3,6 +3,56 @@
 ## Overview
 This is a web-based calculator application built with Java Servlets and Apache Tomcat. It processes arithmetic operations (addition, subtraction, multiplication, division) through an HTML form.
 
+## One-Click Run (Recommended)
+
+If you want everything automatic (compile + deploy + Tomcat restart + browser open), just run one file:
+
+1. Open `Calculator using Servlet` folder.
+2. Double-click `start-calculator.bat`.
+3. Wait for steps `[1/6]` to `[6/6]` to finish.
+4. Calculator opens automatically at `http://localhost:8080/calculator/`.
+
+This script now does the full process for you, so you do not need to manually run compile/copy/start commands.
+
+---
+
+## What You Need to Change (Only If Required)
+
+In most systems, no manual change is needed now. The launcher auto-detects Tomcat.
+If one-click run fails, check these items:
+
+1. **Tomcat path**
+   - The script first uses `CATALINA_HOME`.
+   - If not set, it tries common folders like:
+     - `D:\apache-tomcat-11.0.22-windows-x64\apache-tomcat-11.0.22`
+     - `C:\apache-tomcat-11.0.22`
+     - `C:\apache-tomcat-10.1.39`
+   - If your Tomcat is somewhere else, either:
+     - set `CATALINA_HOME` to your Tomcat folder, or
+     - edit the candidate path list in the script.
+
+2. **Java/JDK setup**
+   - `javac` must be available (JDK installed, not only JRE).
+   - If you get `javac not found`, set `JAVA_HOME` and add `%JAVA_HOME%\bin` to PATH.
+
+3. **Tomcat version**
+   - This project uses `jakarta.servlet.*`, so use Tomcat 10/11.
+   - Tomcat 9 (`javax.servlet.*`) will not work with this servlet code.
+
+4. **Application URL/Name**
+   - Default app name is `calculator`.
+   - Default URL is `http://localhost:8080/calculator/`.
+   - Change only if you want a different app name or port.
+
+5. **Execution policy for PowerShell script**
+   - If `start-calculator.ps1` is blocked, run PowerShell as admin and execute:
+   ```powershell
+   Set-ExecutionPolicy -Scope CurrentUser RemoteSigned
+   ```
+
+6. **If port 8080 is already in use**
+   - Change Tomcat connector port in `conf/server.xml` and then use the new port in browser URL.
+
 ---
 
 ## Prerequisites
